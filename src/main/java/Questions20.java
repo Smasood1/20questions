@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Questions20 {
     //question 1
     //in java index position 0 is considered 1 value, therefore even though there are 4 string names,
@@ -35,8 +37,8 @@ public class Questions20 {
     //
     public static int getSum(int[] ints) {
         int sum = 0;
-        for (int value : ints) {
-            sum += value;
+        for (int i : ints) {
+            sum += i;
         }
         return sum;
     }
@@ -67,7 +69,7 @@ public class Questions20 {
         String even = " ";
         for (int i = 0; i < number.length; i++) {
             if (number[i] % 2 == 0) {
-                even = even + String.valueOf(number[i]) + " ";
+                even = even + (number[i]) + " ";
             }
         }
         return even;
@@ -174,13 +176,84 @@ public class Questions20 {
 
     //question 17
     //Swap the first element in an array with the last element in an array and return
-//    public static String[] swap(String[] stringArray) {
-//        String[] words = stringArray;
-//
-//    }
+    public static String[] swap(String[] stringArray) {
+        String[] namesSwap = stringArray;
+        //parameter string words is in array, now we can use index positions
+
+        String x = stringArray[0];
+        String y = stringArray[stringArray.length-1];
+
+        namesSwap[0] = y;
+        namesSwap[namesSwap.length-1]=x;
+
+        return namesSwap;
+    }
+
+
+
     //question 18
-    //question 19
-    //question 20
+
+    public static String replaceCharacters(String str) {
+        str = str.toLowerCase();
+
+        str = str.replace('f','7');
+        str = str.replace('s','$');
+        str = str.replace('1','!');
+        str = str.replace('a','@');
+
+
+        return str;
+    }
+
+
+
+
+
+   // Question 19
+      //        1    2    3    4     5    6    7                  1  2    3  4     5   6     7
+    //        " The small brown dog hopped the fence " becomes " The Wu Tang Wu Hopped Wu Fence "
+    public static String replaceWuTangTwoThreeDivisible(String stringInput) {
+
+       String [] stringInputArray = stringInput.split(" ");
+       String x = " ";
+       for(int i = 0; i < stringInputArray.length; i++){
+           if((i+1) % 2 == 0){
+               stringInputArray[i] = "wu";
+           }
+           else if((i+1) % 3 == 0){
+               stringInputArray[i] = "Tang";
+           }
+
+           x = x + stringInputArray[i] + " ";
+       }
+        return x;
+    }
+   // Question 20
+    //n fibonacci series, next number is the sum of previous two numbers
+   // for example 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 etc. The first two numbers of fibonacci series are 0 and 1.
+    public static String createStringOfFibonnaciUpToMax(int maxnumber) {
+
+        int num1 = 0;
+        int num2 = 1;
+
+        String str = num1 + " " + num2;
+
+        for(int i = 0; i < maxnumber; i++){
+            int num3 = num1 + num2;
+
+            num1 = num2;
+            num2 = num3;
+            if(maxnumber <= num3){
+                break;
+            }
+
+            str += num3 + " ";
+        }
+
+
+        return str;
+    }
+
 
 
 
@@ -191,6 +264,8 @@ public class Questions20 {
     public static void main(String[] args) {
         String[] names = {"Saad", "Kyle", "Kareem", "Omar","Isaiah","Tom"};
         int[] number = {24, 52, 33, 64, 71, 19, 62};
+
+
         System.out.println("Q1 - Get last Index");
         System.out.println(getLastIndex(names));
         System.out.println("Question 2");
@@ -223,6 +298,16 @@ public class Questions20 {
         System.out.println(WordsInAStringCounter("Green Yllow Blue Green Black"));
         System.out.println("Question 16");
         System.out.println(VowelsCounter("yo my name is saad"));
+        System.out.println("Question 17");
+        System.out.println("The original Array of names: " + Arrays.toString(names));
+        System.out.println(Arrays.toString(swap(names)));
+        System.out.println("Question 18");
+        System.out.println(replaceCharacters("The Farmer went to the store to get 1 dollar's worth of fertilizer"));
+        System.out.println("Question 19");
+        System.out.println("Original String: The small brown dog hopped the fence");
+        System.out.println(replaceWuTangTwoThreeDivisible("The small brown dog hopped the fence"));
+        System.out.println("Question 20");
+        System.out.println(createStringOfFibonnaciUpToMax(534989999));
     }
 }
 
